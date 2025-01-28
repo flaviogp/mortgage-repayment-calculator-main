@@ -1,4 +1,4 @@
-import { BsCurrencyEuro, BsCurrencyPound } from "react-icons/bs";
+import { BsCurrencyPound } from "react-icons/bs";
 
 const Result = () => {
   return (

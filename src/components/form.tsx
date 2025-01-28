@@ -1,7 +1,11 @@
+import { useState } from "react";
 import { BsCurrencyPound } from "react-icons/bs";
 import { FaCalculator } from "react-icons/fa";
 
 const Form = () => {
+  const [checkedStyle, setCheckedStyle] = useState("");
+
+  const inputStyles = "bg-lime/20 border-2 border-lime";
   return (
     <div className="p-5 space-y-4">
       <div className="">
@@ -14,14 +18,14 @@ const Form = () => {
         <div className="w-full space-y-3">
           <label htmlFor="ammount">Mortgage Ammount</label>
           <div className=" border border-slate-700 flex rounded-md overflow-hidden">
-            <div className="p-3 bg-slate-100">
+            <div className="px-3 flex items-center bg-slate-100">
               <BsCurrencyPound />
             </div>
             <input
               type="number"
               name="ammount"
               id="ammount"
-              className="w-full h-10 font-bold text-slate-900 px-5"
+              className=" w-full h-10 font-bold text-slate-900 px-5"
             />
           </div>
         </div>
@@ -34,7 +38,7 @@ const Form = () => {
               id="rate"
               className="w-full h-10 font-bold text-slate-900 px-5"
             />
-            <div className="p-3 bg-slate-100">
+            <div className="px-3 flex items-center bg-slate-100">
               <span className="font-semibold">years</span>
             </div>
           </div>
@@ -48,7 +52,7 @@ const Form = () => {
               id="term"
               className="w-full h-10 font-bold text-slate-900 px-5"
             />
-            <div className="p-3 bg-slate-100">
+            <div className="px-3 flex items-center bg-slate-100">
               <span className="font-semibold">%</span>
             </div>
           </div>
@@ -57,16 +61,35 @@ const Form = () => {
           <p>Mortgage Type</p>
           <label
             htmlFor="repayment"
-            className="px-5 py-3 flex gap-4 border border-slate-700"
+            className={`${
+              checkedStyle === "repayment" && inputStyles
+            } px-5 py-3 flex gap-4 border border-slate-700 text-slate-800 font-bold rounded-lg`}
           >
-            <input type="radio" name="type" id="repayment" />
+            <input
+              onChange={(e) => setCheckedStyle(e.currentTarget.id)}
+              type="radio"
+              name="type"
+              id="repayment"
+              className="radio-styles focus:ring-offset-0  focus:ring-0"
+            />
             Repayment
           </label>
+
           <label
             htmlFor="interest-only"
-            className="px-5 py-3 flex gap-4 border border-slate-700"
+            className={` ${
+              checkedStyle === "interest-only" && inputStyles
+            } px-5 py-3 flex items-center gap-4 border border-slate-700
+            
+            `}
           >
-            <input type="radio" name="type" id="interest-only" />
+            <input
+              type="radio"
+              name="type"
+              id="interest-only"
+              className="radio-styles focus:ring-offset-0  focus:ring-0"
+              onChange={(e) => setCheckedStyle(e.currentTarget.id)}
+            />
             Interest Only
           </label>
         </div>
