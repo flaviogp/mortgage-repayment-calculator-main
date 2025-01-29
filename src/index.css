@@ -27,6 +27,8 @@
     width: 20px;
     height: 20px;
     position: relative;
+    border: 1px solid hsl(202, 55%, 16%);
+    border-radius: 100%;
   }
   .radio-styles:checked {
     appearance: none;
