@@ -154,42 +154,42 @@ const Form = ({ setFormFields }: FormProps) => {
         </div>
         {/* RATE */}
         <div className="w-full space-y-3">
-          <label htmlFor="rate">Motgage Rate</label>
-          <div className=" border border-slate-700 flex rounded-md overflow-hidden">
-            <input
-              type="number"
-              name="rate"
-              id="rate"
-              maxLength={2}
-              value={rate}
-              className="w-full h-10 font-bold text-slate-900 px-5"
-              onChange={(e) => handleChangeRate(e)}
-            />
-            <div className="px-3 flex items-center bg-slate-100">
-              <span className="font-semibold">years</span>
-            </div>
-          </div>
-          {showErrorMessage("rate")}
-        </div>
-        {/* TERM */}
-        <div className="w-full space-y-3">
-          <label htmlFor="term">Mortgage Term</label>
+          <label htmlFor="rate">Motgage Term</label>
           <div className=" border border-slate-700 flex rounded-md overflow-hidden">
             <input
               type="number"
               name="term"
               id="term"
-              maxLength={3}
+              maxLength={2}
               value={term}
               className="w-full h-10 font-bold text-slate-900 px-5"
               onChange={(e) => handleChangeTerm(e)}
+            />
+            <div className="px-3 flex items-center bg-slate-100">
+              <span className="font-semibold">years</span>
+            </div>
+          </div>
+          {showErrorMessage("term")}
+        </div>
+        {/* TERM */}
+        <div className="w-full space-y-3">
+          <label htmlFor="term">Mortgage Rate</label>
+          <div className=" border border-slate-700 flex rounded-md overflow-hidden">
+            <input
+              type="number"
+              name="rate"
+              id="rate"
+              maxLength={3}
+              value={rate}
+              className="w-full h-10 font-bold text-slate-900 px-5"
+              onChange={(e) => handleChangeRate(e)}
             />
             <div className="px-3 flex items-center bg-slate-100">
               <span className="font-semibold">%</span>
             </div>
           </div>
         </div>
-        {showErrorMessage("term")}
+        {showErrorMessage("rate")}
         {/* TYPE */}
         <div className="w-full flex flex-col space-y-3">
           <p>Mortgage Type</p>
