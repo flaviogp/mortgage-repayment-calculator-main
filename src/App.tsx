@@ -4,7 +4,7 @@ import Form from "./components/form";
 import Result from "./components/result";
 
 export type formFieldsType = {
-  amount: number;
+  amount: string;
   rate: number;
   term: number;
   type: "repayment" | "interest-only";

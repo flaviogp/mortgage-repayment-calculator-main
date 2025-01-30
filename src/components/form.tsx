@@ -4,7 +4,7 @@ import { FaCalculator } from "react-icons/fa";
 import { formFieldsType } from "../App";
 
 interface FormProps {
-  setFormFields: (data: formFieldsType) => void;
+  setFormFields: (data: formFieldsType | null) => void;
 }
 
 type ErrorType = {
@@ -13,13 +13,12 @@ type ErrorType = {
 };
 
 const Form = ({ setFormFields }: FormProps) => {
-  const [checkedField, setCheckedField] = useState<
-    "repayment" | "interest-only" | null
-  >(null);
+  const [checkedField, setCheckedField] = useState("");
   const [amount, setAmount] = useState("");
-  const [rate, setRate] = useState(0);
-  const [term, setTerm] = useState(0);
+  const [rate, setRate] = useState("");
+  const [term, setTerm] = useState("");
   const [errors, setErrors] = useState<ErrorType[]>([]);
+  const inputStyles = "bg-lime/20 border-2 border-lime";
 
   const handleChangeRate = (e: React.ChangeEvent<HTMLInputElement>) => {
     const rate = e.currentTarget.value;
@@ -28,7 +27,7 @@ const Form = ({ setFormFields }: FormProps) => {
     if (rate.length > maxLength) {
       return (e.currentTarget.value = rate.slice(0, maxLength));
     }
-    setRate(Number(rate));
+    setRate(rate);
   };
   const handleChangeTerm = (e: React.ChangeEvent<HTMLInputElement>) => {
     const rate = e.currentTarget.value;
@@ -43,7 +42,7 @@ const Form = ({ setFormFields }: FormProps) => {
         { type: "term", message: "O campo term não pode passar de 100%" },
       ]);
     }
-    setTerm(Number(rate));
+    setTerm(rate);
   };
   const handleChangeAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.currentTarget.value;
@@ -107,15 +106,22 @@ const Form = ({ setFormFields }: FormProps) => {
 
     const fields: formFieldsType = {
       amount,
-      rate,
-      term,
+      rate: Number(rate),
+      term: Number(term),
       type: checkedField as "repayment" | "interest-only",
     };
     console.log("send", fields);
     setFormFields(fields);
   };
 
-  const inputStyles = "bg-lime/20 border-2 border-lime";
+  const handleClearForm = () => {
+    setCheckedField("");
+    setAmount("");
+    setRate("");
+    setTerm("");
+    setFormFields(null);
+    setErrors([]);
+  };
 
   return (
     <div className="p-5 space-y-4">
@@ -123,7 +129,9 @@ const Form = ({ setFormFields }: FormProps) => {
         <h2 className="mb-2 text-xl font-bold text-slate-900">
           Mortgage Calculator
         </h2>
-        <span className="text-slate-500 underline">Clear All</span>
+        <span className="text-slate-500 underline" onClick={handleClearForm}>
+          Clear All
+        </span>
       </div>
       <form className="space-y-4">
         {/* AMOUNT */}
@@ -137,6 +145,7 @@ const Form = ({ setFormFields }: FormProps) => {
               type="number"
               name="amount"
               id="amount"
+              value={amount}
               className=" w-full h-10 font-bold text-slate-900 px-5"
               onChange={(e) => handleChangeAmount(e)}
             />
@@ -152,6 +161,7 @@ const Form = ({ setFormFields }: FormProps) => {
               name="rate"
               id="rate"
               maxLength={2}
+              value={rate}
               className="w-full h-10 font-bold text-slate-900 px-5"
               onChange={(e) => handleChangeRate(e)}
             />
@@ -170,6 +180,7 @@ const Form = ({ setFormFields }: FormProps) => {
               name="term"
               id="term"
               maxLength={3}
+              value={term}
               className="w-full h-10 font-bold text-slate-900 px-5"
               onChange={(e) => handleChangeTerm(e)}
             />
@@ -193,6 +204,7 @@ const Form = ({ setFormFields }: FormProps) => {
               type="radio"
               name="type"
               id="repayment"
+              checked={checkedField === "repayment"}
               className="radio-styles focus:ring-offset-0  focus:ring-0"
             />
             Repayment
@@ -210,6 +222,7 @@ const Form = ({ setFormFields }: FormProps) => {
               type="radio"
               name="type"
               id="interest-only"
+              checked={checkedField === "interest-only"}
               className="radio-styles focus:ring-offset-0  focus:ring-0"
               onChange={(e) => setCheckedField(e.currentTarget.id)}
             />
