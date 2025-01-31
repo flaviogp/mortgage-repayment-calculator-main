@@ -3,10 +3,30 @@ import { formFieldsType } from "../App";
 import CalculatorIcon from "../../public/images/illustration-empty.svg";
 
 interface ResultProps {
-  formFields?: formFieldsType;
+  formFields?: formFieldsType | null;
 }
 
 const Result = ({ formFields }: ResultProps) => {
+  const handleGetMonthlyRepayment = () => {
+    if (!formFields) return;
+    const { amount, rate, term } = formFields;
+    const MonthRate = rate / 100 / 12;
+    const paymentsCount = term * 12;
+
+    const paymentMounth =
+      (Number(amount) * MonthRate * Math.pow(1 + MonthRate, paymentsCount)) /
+      (Math.pow(1 + MonthRate, paymentsCount) - 1);
+
+    return paymentMounth.toFixed(2);
+  };
+  const handleGetTotalRepayment = () => {
+    if (!formFields) return;
+    const paymentsCount = formFields.term * 12;
+    const paymentMounth = Number(handleGetMonthlyRepayment());
+    if (!paymentMounth) return;
+    const total = paymentMounth * paymentsCount;
+    return total.toFixed(2);
+  };
   return (
     <div className="text-slate-300 p-5 bg-slate-900 space-y-4">
       {!formFields ? (
@@ -41,14 +61,14 @@ const Result = ({ formFields }: ResultProps) => {
               <p className="text-sm">Your monthly respayments</p>
               <span className=" text-lime font-bold flex items-center text-3xl">
                 <BsCurrencyPound />
-                1,797.74
+                {handleGetMonthlyRepayment()}
               </span>
             </div>
             <div className="space-y-2 pt-3">
               <p className="text-sm">Total you'll repay over the term</p>
               <span className=" text-white font-bold flex items-center text-xl">
                 <BsCurrencyPound />
-                1,797.74
+                {handleGetTotalRepayment()}
               </span>
             </div>
           </div>
