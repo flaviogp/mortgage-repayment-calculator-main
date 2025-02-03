@@ -18,8 +18,9 @@ const Form = ({ setFormFields }: FormProps) => {
   const [rate, setRate] = useState("");
   const [term, setTerm] = useState("");
   const [errors, setErrors] = useState<ErrorType[]>([]);
-  const inputStyles = "bg-lime/20 border-2 border-lime";
 
+  const inputStyles = "bg-lime/20 border-2 border-lime";
+  const errorStyles = "[&>div]:bg-red [&>div]:text-white border border-red";
   const handleChangeRate = (e: React.ChangeEvent<HTMLInputElement>) => {
     const rate = e.currentTarget.value;
     const maxLength = e.currentTarget.maxLength;
@@ -140,7 +141,13 @@ const Form = ({ setFormFields }: FormProps) => {
         {/* AMOUNT */}
         <div className="w-full flex flex-col gap-3">
           <label htmlFor="amount">Mortgage Amount</label>
-          <div className=" border border-slate-700 flex rounded-md overflow-hidden cursor-pointer hover:border-slate-900">
+          <div
+            className={`${
+              errors.find((err) => err.type === "amount")
+                ? errorStyles
+                : " border  border-slate-700 hover:border-slate-900"
+            }  flex rounded-md overflow-hidden cursor-pointer `}
+          >
             <div className="px-3 flex items-center bg-slate-100">
               <BsCurrencyPound />
             </div>
@@ -159,7 +166,13 @@ const Form = ({ setFormFields }: FormProps) => {
           {/* TERM */}
           <div className="w-full space-y-3">
             <label htmlFor="term">Motgage Term</label>
-            <div className=" border border-slate-700 flex rounded-md overflow-hidden cursor-pointer hover:border-slate-900">
+            <div
+              className={`${
+                errors.find((err) => err.type === "term")
+                  ? errorStyles
+                  : " border  border-slate-700 hover:border-slate-900"
+              }  flex rounded-md overflow-hidden cursor-pointer `}
+            >
               <input
                 type="number"
                 name="term"
@@ -178,7 +191,13 @@ const Form = ({ setFormFields }: FormProps) => {
           {/* RATE */}
           <div className="w-full space-y-3 ">
             <label htmlFor="rate">Mortgage Rate</label>
-            <div className=" border  border-slate-700 flex rounded-md overflow-hidden cursor-pointer hover:border-slate-900">
+            <div
+              className={`${
+                errors.find((err) => err.type === "rate")
+                  ? errorStyles
+                  : " border  border-slate-700 hover:border-slate-900"
+              }  flex rounded-md overflow-hidden cursor-pointer `}
+            >
               <input
                 type="number"
                 name="rate"
