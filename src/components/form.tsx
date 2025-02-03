@@ -211,9 +211,9 @@ const Form = ({ setFormFields }: FormProps) => {
                 <span className="font-semibold">%</span>
               </div>
             </div>
+            {showErrorMessage("rate")}
           </div>
         </div>
-        {showErrorMessage("rate")}
         {/* TYPE */}
         <div className="w-full flex flex-col gap-3 cursor-pointer">
           <p>Mortgage Type</p>
