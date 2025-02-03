@@ -20,7 +20,13 @@
 
   body {
     font-family: "Plus Jakarta Sans", serif;
-  }
+    display: grid;
+    place-items: center;
+    background-color: hsl(202, 86%, 94%);
+    height: 100vh; 
+  } 
+  
+
 
   .radio-styles {
     appearance: none;

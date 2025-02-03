@@ -124,18 +124,18 @@ const Form = ({ setFormFields }: FormProps) => {
   };
 
   return (
-    <div className="p-5 space-y-4">
+    <div className="p-5 flex flex-col gap-3 w-full max-w-[500px] md:p-10">
       <div className="">
-        <h2 className="mb-2 text-xl font-bold text-slate-900">
+        <h2 className="mb-2 text-2xl font-bold text-slate-900">
           Mortgage Calculator
         </h2>
         <span className="text-slate-500 underline" onClick={handleClearForm}>
           Clear All
         </span>
       </div>
-      <form className="space-y-4">
+      <form className="flex flex-col gap-3">
         {/* AMOUNT */}
-        <div className="w-full space-y-3">
+        <div className="w-full flex flex-col gap-3">
           <label htmlFor="amount">Mortgage Amount</label>
           <div className=" border border-slate-700 flex rounded-md overflow-hidden">
             <div className="px-3 flex items-center bg-slate-100">
@@ -152,46 +152,48 @@ const Form = ({ setFormFields }: FormProps) => {
           </div>
           {showErrorMessage("amount")}
         </div>
-        {/* RATE */}
-        <div className="w-full space-y-3">
-          <label htmlFor="rate">Motgage Term</label>
-          <div className=" border border-slate-700 flex rounded-md overflow-hidden">
-            <input
-              type="number"
-              name="term"
-              id="term"
-              maxLength={2}
-              value={term}
-              className="w-full h-10 font-bold text-slate-900 px-5"
-              onChange={(e) => handleChangeTerm(e)}
-            />
-            <div className="px-3 flex items-center bg-slate-100">
-              <span className="font-semibold">years</span>
+        <div className="flex flex-col gap-3 md:flex-row md:items-center  ">
+          {/* TERM */}
+          <div className="w-full space-y-3">
+            <label htmlFor="rate">Motgage Term</label>
+            <div className=" border border-slate-700 flex rounded-md overflow-hidden">
+              <input
+                type="number"
+                name="term"
+                id="term"
+                maxLength={2}
+                value={term}
+                className="w-full h-10 font-bold text-slate-900 px-5"
+                onChange={(e) => handleChangeTerm(e)}
+              />
+              <div className="px-3 flex items-center bg-slate-100">
+                <span className="font-semibold">years</span>
+              </div>
             </div>
+            {showErrorMessage("term")}
           </div>
-          {showErrorMessage("term")}
-        </div>
-        {/* TERM */}
-        <div className="w-full space-y-3">
-          <label htmlFor="term">Mortgage Rate</label>
-          <div className=" border border-slate-700 flex rounded-md overflow-hidden">
-            <input
-              type="number"
-              name="rate"
-              id="rate"
-              maxLength={3}
-              value={rate}
-              className="w-full h-10 font-bold text-slate-900 px-5"
-              onChange={(e) => handleChangeRate(e)}
-            />
-            <div className="px-3 flex items-center bg-slate-100">
-              <span className="font-semibold">%</span>
+          {/* RATE */}
+          <div className="w-full space-y-3 ">
+            <label htmlFor="term">Mortgage Rate</label>
+            <div className=" border  border-slate-700 flex rounded-md overflow-hidden">
+              <input
+                type="number"
+                name="rate"
+                id="rate"
+                maxLength={3}
+                value={rate}
+                className="w-full h-10 font-bold text-slate-900 px-5"
+                onChange={(e) => handleChangeRate(e)}
+              />
+              <div className="px-3 flex items-center bg-slate-100">
+                <span className="font-semibold">%</span>
+              </div>
             </div>
           </div>
         </div>
         {showErrorMessage("rate")}
         {/* TYPE */}
-        <div className="w-full flex flex-col space-y-3">
+        <div className="w-full flex flex-col gap-3">
           <p>Mortgage Type</p>
           <label
             htmlFor="repayment"
@@ -216,7 +218,7 @@ const Form = ({ setFormFields }: FormProps) => {
               checkedField === "interest-only"
                 ? inputStyles
                 : "border-slate-700"
-            } px-5 py-3 flex items-center gap-4 border rounded-lg  font-bold`}
+            } px-5 py-3 flex items-center gap-3 border rounded-lg  font-bold`}
           >
             <input
               type="radio"

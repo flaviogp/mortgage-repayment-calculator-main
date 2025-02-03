@@ -28,9 +28,9 @@ const Result = ({ formFields }: ResultProps) => {
     return total.toFixed(2);
   };
   return (
-    <div className="text-slate-300 p-5 bg-slate-900 space-y-4">
+    <div className="text-slate-300 p-5 bg-slate-900  md:min-h-[540px]  md:p-10 md:rounded-bl-[100px]">
       {!formFields ? (
-        <>
+        <div className="max-w-[420px] flex flex-col gap-3">
           <div className="w-full h-[250px]">
             <img
               src={CalculatorIcon}
@@ -46,33 +46,33 @@ const Result = ({ formFields }: ResultProps) => {
             Complete the form and clock "calculate repayment" to see what your
             monthly repayments would be.
           </p>
-        </>
+        </div>
       ) : (
-        <>
-          <h2 className="text-xl font-bold text-white">Your results</h2>
+        <div className="max-w-[420px] flex flex-col gap-3">
+          <h2 className="text-2xl font-bold text-white">Your results</h2>
           <p>
             Your results are shown below based on the information you provided.
             to adjust the results, edit the form and click "calculate
             repayments" again.
           </p>
 
-          <div className="p-5 w-full bg-slate-1000 border-t-4 border-t-lime  rounded-lg">
-            <div className="space-y-2 pb-3 border-b  border-slate-500">
+          <div className="p-7 w-full bg-slate-1000 border-t-4 mt-7 max-w-[420px] border-t-lime  rounded-lg">
+            <div className="space-y-2 pb-10 border-b  border-slate-500">
               <p className="text-sm">Your monthly respayments</p>
-              <span className=" text-lime font-bold flex items-center text-3xl">
+              <span className=" text-lime font-bold flex items-center text-3xl md:text-5xl">
                 <BsCurrencyPound />
                 {handleGetMonthlyRepayment()}
               </span>
             </div>
-            <div className="space-y-2 pt-3">
+            <div className="space-y-2 pt-7">
               <p className="text-sm">Total you'll repay over the term</p>
-              <span className=" text-white font-bold flex items-center text-xl">
+              <span className=" text-white font-bold flex items-center text-xl md:text-2xl">
                 <BsCurrencyPound />
                 {handleGetTotalRepayment()}
               </span>
             </div>
           </div>
-        </>
+        </div>
       )}
     </div>
   );
