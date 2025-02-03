@@ -129,7 +129,10 @@ const Form = ({ setFormFields }: FormProps) => {
         <h2 className="mb-2 text-2xl font-bold text-slate-900">
           Mortgage Calculator
         </h2>
-        <span className="text-slate-500 underline" onClick={handleClearForm}>
+        <span
+          className="text-slate-500 underline cursor-pointer hover:text-slate-900"
+          onClick={handleClearForm}
+        >
           Clear All
         </span>
       </div>
@@ -137,7 +140,7 @@ const Form = ({ setFormFields }: FormProps) => {
         {/* AMOUNT */}
         <div className="w-full flex flex-col gap-3">
           <label htmlFor="amount">Mortgage Amount</label>
-          <div className=" border border-slate-700 flex rounded-md overflow-hidden">
+          <div className=" border border-slate-700 flex rounded-md overflow-hidden cursor-pointer hover:border-slate-900">
             <div className="px-3 flex items-center bg-slate-100">
               <BsCurrencyPound />
             </div>
@@ -146,7 +149,7 @@ const Form = ({ setFormFields }: FormProps) => {
               name="amount"
               id="amount"
               value={amount}
-              className=" w-full h-10 font-bold text-slate-900 px-5"
+              className=" w-full h-10 font-bold text-slate-900 px-5 cursor-pointer"
               onChange={(e) => handleChangeAmount(e)}
             />
           </div>
@@ -155,15 +158,15 @@ const Form = ({ setFormFields }: FormProps) => {
         <div className="flex flex-col gap-3 md:flex-row md:items-center  ">
           {/* TERM */}
           <div className="w-full space-y-3">
-            <label htmlFor="rate">Motgage Term</label>
-            <div className=" border border-slate-700 flex rounded-md overflow-hidden">
+            <label htmlFor="term">Motgage Term</label>
+            <div className=" border border-slate-700 flex rounded-md overflow-hidden cursor-pointer hover:border-slate-900">
               <input
                 type="number"
                 name="term"
                 id="term"
                 maxLength={2}
                 value={term}
-                className="w-full h-10 font-bold text-slate-900 px-5"
+                className="w-full h-10 font-bold text-slate-900 cursor-pointer px-5"
                 onChange={(e) => handleChangeTerm(e)}
               />
               <div className="px-3 flex items-center bg-slate-100">
@@ -174,15 +177,15 @@ const Form = ({ setFormFields }: FormProps) => {
           </div>
           {/* RATE */}
           <div className="w-full space-y-3 ">
-            <label htmlFor="term">Mortgage Rate</label>
-            <div className=" border  border-slate-700 flex rounded-md overflow-hidden">
+            <label htmlFor="rate">Mortgage Rate</label>
+            <div className=" border  border-slate-700 flex rounded-md overflow-hidden cursor-pointer hover:border-slate-900">
               <input
                 type="number"
                 name="rate"
                 id="rate"
                 maxLength={3}
                 value={rate}
-                className="w-full h-10 font-bold text-slate-900 px-5"
+                className="w-full h-10 font-bold text-slate-900 px-5 cursor-pointer"
                 onChange={(e) => handleChangeRate(e)}
               />
               <div className="px-3 flex items-center bg-slate-100">
@@ -193,13 +196,13 @@ const Form = ({ setFormFields }: FormProps) => {
         </div>
         {showErrorMessage("rate")}
         {/* TYPE */}
-        <div className="w-full flex flex-col gap-3">
+        <div className="w-full flex flex-col gap-3 cursor-pointer">
           <p>Mortgage Type</p>
           <label
             htmlFor="repayment"
             className={`${
               checkedField === "repayment" ? inputStyles : "border-slate-700"
-            } px-5 py-3 flex gap-4 border   text-slate-800 font-bold rounded-lg`}
+            } px-5 py-3 flex gap-4 border   text-slate-800 font-bold rounded-lg  hover:border-lime cursor-pointer`}
           >
             <input
               onChange={(e) => setCheckedField(e.currentTarget.id)}
@@ -218,7 +221,7 @@ const Form = ({ setFormFields }: FormProps) => {
               checkedField === "interest-only"
                 ? inputStyles
                 : "border-slate-700"
-            } px-5 py-3 flex items-center gap-3 border rounded-lg  font-bold`}
+            } px-5 py-3 flex items-center gap-3 border rounded-lg  font-bold hover:border-lime cursor-pointer`}
           >
             <input
               type="radio"
@@ -233,7 +236,7 @@ const Form = ({ setFormFields }: FormProps) => {
         </div>
         {showErrorMessage("type")}
         <button
-          className="flex gap-2 font-bold text-slate-900 bg-lime p-3 items-center justify-center w-full rounded-full"
+          className="flex gap-2 font-bold text-slate-900 bg-lime hover:bg-lime/70 p-3 items-center justify-center w-full rounded-full"
           onClick={(e) => handleSetFields(e)}
         >
           <FaCalculator />
