@@ -28,7 +28,7 @@ const Result = ({ formFields }: ResultProps) => {
     return total.toFixed(2);
   };
   return (
-    <div className="text-slate-300 p-5 bg-slate-900  md:min-h-[540px]  md:p-10 md:rounded-bl-[100px]">
+    <div className=" flex items-center justify-center text-slate-300 p-5 bg-slate-900 h-full  md:min-h-[540px]  md:p-7 md:rounded-bl-[100px]">
       {!formFields ? (
         <div className="max-w-[420px] flex flex-col gap-3">
           <div className="w-full h-[250px]">

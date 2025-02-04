@@ -95,7 +95,7 @@ const Form = ({ setFormFields }: FormProps) => {
     if (!error) return;
 
     const message = error.message;
-    return <p className="text-red">{message}</p>;
+    return <p className="text-red text-sm">{message}</p>;
   };
 
   const handleSetFields = (
@@ -125,7 +125,7 @@ const Form = ({ setFormFields }: FormProps) => {
   };
 
   return (
-    <div className="p-5 flex flex-col gap-3 w-full max-w-[500px] md:p-10">
+    <div className="p-5 flex flex-col gap-4 w-full h-full max-w-[500px] md:p-7">
       <div className="">
         <h2 className="mb-2 text-2xl font-bold text-slate-900">
           Mortgage Calculator
@@ -137,7 +137,7 @@ const Form = ({ setFormFields }: FormProps) => {
           Clear All
         </span>
       </div>
-      <form className="flex flex-col gap-3">
+      <form className="flex flex-col gap-4  md:h-full md:justify-around">
         {/* AMOUNT */}
         <div className="w-full flex flex-col gap-3">
           <label htmlFor="amount">Mortgage Amount</label>
@@ -252,8 +252,8 @@ const Form = ({ setFormFields }: FormProps) => {
             />
             Interest Only
           </label>
+          {showErrorMessage("type")}
         </div>
-        {showErrorMessage("type")}
         <button
           className="flex gap-2 font-bold text-slate-900 bg-lime hover:bg-lime/70 p-3 items-center justify-center w-full rounded-full"
           onClick={(e) => handleSetFields(e)}
